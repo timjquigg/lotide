@@ -13,7 +13,6 @@ const countLetters = function(str) {
       result[char] ? result[char] ++ : result[char] = 1;
     }
   }
-
   return result;
 };
 
