@@ -1,11 +1,24 @@
 const eqArrays = function(arrOne, arrTwo) {
+
   if (arrOne.length !== arrTwo.length) {
     return false;
   }
+
   for (let i = 0; i < arrOne.length; i++) {
-    if (arrOne[i] !== arrTwo[i]) {
+    
+    if (!Array.isArray(arrOne[i])) {
+
+      if (arrOne[i] !== arrTwo[i]) {
+        return false;
+      }
+      
+      continue;
+    }
+
+    if (!eqArrays(arrOne[i], arrTwo[i])) {
       return false;
     }
+
   }
   return true;
 };
@@ -16,17 +29,24 @@ const eqObjects = function(object1, object2) {
     return false;
   }
 
-  for (let key of Object.keys(object1)) {
+  for (const key of Object.keys(object1)) {
     //Check if value of given key is an array
-    if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
-      if (!eqArrays(object1[key], object2[key])) {
+    if (typeof object1 === 'object') {
+
+      if (Array.isArray(object1[key])) {
+        if (!eqArrays(object1[key], object2[key])) {
+          return false;
+        }
+      }
+      if (!eqObjects(object1[key], object2[key])) {
         return false;
       }
-    } else {
-      if (object1[key] !== object2[key]) {
-        return false;
-      }
+      continue;
     }
+    if (object1[key] !== object2[key]) {
+      return false;
+    }
+    
   }
   return true;
 };
@@ -54,3 +74,9 @@ assertObjectsEqual(cd, dc); // => true
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
 assertObjectsEqual(cd, cd2); // => false
+
+assertObjectsEqual({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }); // => true
+
+assertObjectsEqual({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }); // => false
+
+assertObjectsEqual({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }); // => false
