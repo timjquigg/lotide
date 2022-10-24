@@ -1,7 +1,7 @@
 {
-  "name": "lotide",
+  "name": "@timjquigg/lotide",
   "version": "1.0.0",
-  "description": "practice module for Lighthouse Labs web development bootcamp. Imitation of the lowdash library",
+  "description": "practice module for Lighthouse Labs web development bootcamp. imitation of the lodash library",
   "main": "assertArraysEqual.js",
   "directories": {
     "test": "test"
