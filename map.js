@@ -1,5 +1,5 @@
 const map = (arr, callback) => {
-  newArr = [];
+  const newArr = [];
   arr.forEach(element => newArr.push(callback(element)));
   return newArr;
 };

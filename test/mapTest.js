@@ -1,16 +1,17 @@
 const map = require('../map');
-const assertArraysEqual = require('../assertArraysEqual');
+const assert = require('chai').assert;
 
-// Tests:
-// const words = ["ground", "control", "to", "major", "tom"];
+describe("#map", () => {
+  it('returns [2, 4, 6, 8] when given [1, 2, 3, 4] & x => x * 2', () => {
+    assert.deepEqual(map([1, 2, 3, 4], x => x * 2), [2, 4, 6, 8]);
+  });
+  
+  it('returns [0, 1, 2, 3] when given [1, 2, 3, 4] & x => x - 1', () => {
+    assert.deepEqual(map([1, 2, 3, 4], x => x - 1), [0, 1, 2, 3]);
+  });
 
-// const results1 = map(words, word => word.length);
-// console.log(results1);
+  it('returns "[1, 2, 3, 4] when given ["a", "ab", "abc", "abcd"] & x => x.length', () => {
+    assert.deepEqual(map(["a", "ab", "abc", "abcd"], x=> x.length), [1, 2, 3, 4]);
+  });
 
-const array1 = [1,2,3,4,5];
-const result1 = map(array1, x => x * 2);
-assertArraysEqual(result1, [2,4,6,8,10]);
-
-const array2 = ['a', 'ab', 'abc', 'abcd'];
-const result2 = map(array2, x => x.length);
-assertArraysEqual(result2, [1,2,3,4]);
+});
