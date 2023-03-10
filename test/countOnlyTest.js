@@ -1,5 +1,5 @@
-const countOnly = require('../countOnly');
-const assert = require('chai').assert;
+const { countOnly } = require("../build/countOnly");
+const assert = require("chai").assert;
 
 const firstNames = [
   "Karl",
@@ -10,12 +10,12 @@ const firstNames = [
   "Jason",
   "Salima",
   "Fang",
-  "Joe"
+  "Joe",
 ];
 
-const filter = { "Jason": true, "Karima": true, "Fang": true, "Agouhanna": false };
+const filter = { Jason: true, Karima: true, Fang: true, Agouhanna: false };
 
-describe('#countOnly', () => {
+describe("#countOnly", () => {
   it('returns 1 for "Jason"', () => {
     assert.equal(countOnly(firstNames, filter)["Jason"], 1);
   });
@@ -25,15 +25,14 @@ describe('#countOnly', () => {
   });
 
   it('returns 2 for "Fang"', () => {
-    assert.equal(countOnly(firstNames, filter)['Fang'], 2);
+    assert.equal(countOnly(firstNames, filter)["Fang"], 2);
   });
 
   it('returns undefined for "Agouhanna"', () => {
     assert.equal(countOnly(firstNames, filter)["Agouhanna"], undefined);
   });
 
-  it('returns {Jason: 1, Fang: 2}', () => {
-    assert.deepEqual(countOnly(firstNames, filter), {"Jason": 1, "Fang": 2});
+  it("returns {Jason: 1, Fang: 2}", () => {
+    assert.deepEqual(countOnly(firstNames, filter), { Jason: 1, Fang: 2 });
   });
-
 });
