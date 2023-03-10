@@ -1,6 +1,13 @@
-const eqArrays = require('./eqArrays');
+import { eqArrays } from "./eqArrays";
 
-const eqObjects = function(object1, object2) {
+export const eqObjects = function (
+  object1: {
+    [key: string]: any;
+  },
+  object2: {
+    [key: string]: any;
+  }
+) {
   //Check that both objects have the same number of keys
   if (Object.keys(object1).length !== Object.keys(object2).length) {
     return false;
@@ -8,8 +15,7 @@ const eqObjects = function(object1, object2) {
 
   for (const key of Object.keys(object1)) {
     //Check if value of given key is an array
-    if (typeof object1 === 'object') {
-
+    if (typeof object1 === "object") {
       if (Array.isArray(object1[key])) {
         if (!eqArrays(object1[key], object2[key])) {
           return false;
@@ -23,9 +29,6 @@ const eqObjects = function(object1, object2) {
     if (object1[key] !== object2[key]) {
       return false;
     }
-    
   }
   return true;
 };
-
-module.exports = eqObjects;

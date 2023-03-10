@@ -1,5 +1,5 @@
-const takeUntil = function(array, callback) {
-  const newArr = [];
+export const takeUntil = <T>(array: T[], callback: <U>(x: U) => boolean) => {
+  const newArr: T[] = [];
   for (const item of array) {
     if (callback(item)) {
       break;
@@ -8,5 +8,3 @@ const takeUntil = function(array, callback) {
   }
   return newArr;
 };
-
-module.exports = takeUntil;
